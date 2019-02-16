@@ -18,7 +18,7 @@
 
 ---
 
-### Table Storage
+### Blob Storage
 
 - [ ] Get all todos
 - [ ] Get todo by id
