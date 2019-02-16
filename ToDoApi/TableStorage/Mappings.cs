@@ -14,5 +14,17 @@ namespace ToDoApi.TableStorage
                 CreatedTime = tableEntity.CreatedTime
             };
         }
+
+        public static TodoTableEntity ToTableEntity(this ToDo todo)
+        {
+            return new TodoTableEntity
+            {
+                RowKey = todo.Id,
+                PartitionKey = "todo",
+                CreatedTime = todo.CreatedTime,
+                Description = todo.Description,
+                IsCompleted = todo.IsCompleted
+            };
+        }
     }
 }
