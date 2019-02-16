@@ -2,7 +2,7 @@
 
 namespace ToDoApi.InMemory
 {
-    public class InMemoryToDo
+    public class ToDo
     {
         public string Id { get; set; } = Guid.NewGuid().ToString();
         public DateTime CreatedTime { get; set; } = DateTime.UtcNow;

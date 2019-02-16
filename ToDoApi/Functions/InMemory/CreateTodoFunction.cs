@@ -6,9 +6,10 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using ToDoApi.DTO;
 using ToDoApi.InMemory;
 
-namespace ToDoApi.Functions
+namespace ToDoApi.Functions.InMemory
 {
     public static class CreateTodoFunction
     {
@@ -23,7 +24,7 @@ namespace ToDoApi.Functions
             var todoContent = await new StreamReader(request.Body).ReadToEndAsync();
             var todoTask = JsonConvert.DeserializeObject<ToDoCreateDto>(todoContent);
 
-            var task = new InMemoryToDo
+            var task = new ToDo
             {
                 Description = todoTask.Description
             };

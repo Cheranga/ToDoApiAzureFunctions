@@ -1,4 +1,4 @@
-﻿namespace ToDoApi.InMemory
+﻿namespace ToDoApi.DTO
 {
     public class TodoUpdateDto
     {

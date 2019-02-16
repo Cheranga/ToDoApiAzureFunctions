@@ -5,7 +5,7 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
 using ToDoApi.InMemory;
 
-namespace ToDoApi.Functions
+namespace ToDoApi.Functions.InMemory
 {
     public static class GetAllTodosFunction
     {

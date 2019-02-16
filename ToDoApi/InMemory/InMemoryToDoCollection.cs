@@ -4,6 +4,6 @@ namespace ToDoApi.InMemory
 {
     public class InMemoryToDoCollection
     {
-        public static List<InMemoryToDo> Items = new List<InMemoryToDo>();
+        public static List<ToDo> Items = new List<ToDo>();
     }
 }
