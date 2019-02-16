@@ -33,6 +33,8 @@ public static async Task<IActionResult> Run(
 
 ```
 
+* Check how to add a blob using the `IAsyncCollector`. So that you'll know multiple ways to do so.
+
 ---
 
 ### Blob Storage
@@ -42,6 +44,55 @@ public static async Task<IActionResult> Run(
 - [ ] Create a todo
 - [ ] Update a todo
 - [ ] Delete a todo
+
+* Getting an item from the blob storage can be done in two ways.
+
+1. Use the input binding of `Blob`
+
+```CSharp
+[FunctionName("BlobStorage_GetTodoById")]
+public static async Task<IActionResult> Run(
+[HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "todo3/{id}")]HttpRequest request,
+string id,
+[Blob("todos/{id}.json", Connection = "AzureWebJobsStorage")]string blobContent,
+ILogger logger)
+    {
+        logger.LogInformation($"Getting todo item :{id}");
+
+        if (string.IsNullOrEmpty(blobContent))
+        {
+            return new NotFoundResult();
+        }
+
+        var todo = JsonConvert.DeserializeObject<ToDo>(blobContent);
+        return new OkObjectResult(todo);
+    }
+```
+
+2. Bind the blob container itself and retrieve the content through code.
+
+```CSharp
+[FunctionName("BlobStorage_GetTodoById")]
+public static async Task<IActionResult> Run(
+    [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "todo3/{id}")]HttpRequest request,
+    string id,
+    [Blob("todos", Connection = "AzureWebJobsStorage")]CloudBlobContainer container,
+    ILogger logger)
+    {
+        logger.LogInformation($"Getting todo item :{id}");
+
+        var blob = container.GetBlockBlobReference($"{id}.json");
+        if (blob == null)
+        {
+            return new NotFoundResult();
+        }
+
+        var blobContent = await blob.DownloadTextAsync();
+        var todo = JsonConvert.DeserializeObject<ToDo>(blobContent);
+
+        return new OkObjectResult(todo);
+    }
+``` 
 
 ---
 

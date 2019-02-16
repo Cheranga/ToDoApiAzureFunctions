@@ -31,7 +31,7 @@ namespace ToDoApi.Functions.Blob
 
             var todoContent = await new StreamReader(request.Body).ReadToEndAsync();
             var todoCreateDto = JsonConvert.DeserializeObject<ToDoCreateDto>(todoContent);
-            var todo = new ToDo {Description = todoCreateDto.Description};
+            var todo = new ToDo { Description = todoCreateDto.Description };
 
             var blob = blobContainer.GetBlockBlobReference($"{todo.Id}.json");
             await blob.UploadTextAsync(JsonConvert.SerializeObject(todo));
@@ -39,4 +39,25 @@ namespace ToDoApi.Functions.Blob
             return new OkObjectResult(todo);
         }
     }
+
+    //public static class CreateTodoFunction2
+    //{
+    //    [FunctionName("BlobStorage_CreateTodo2")]
+    //    public static async Task<IActionResult> Run(
+    //        [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "todo4")]HttpRequest request,
+    //        [Blob("todos", Connection = "AzureWebJobsStorage")]IAsyncCollector<string> collection,
+    //        ILogger logger)
+    //    {
+    //        logger.LogInformation("Creating a todo using async collection with blobs");
+
+    //        var content = await new StreamReader(request.Body).ReadToEndAsync();
+    //        var createTodoDto = JsonConvert.DeserializeObject<ToDoCreateDto>(content);
+    //        var todo = new ToDo { Description = createTodoDto.Description };
+    //        var contentToUpload = JsonConvert.SerializeObject(todo);
+
+    //        await collection.AddAsync(contentToUpload);
+
+    //        return new OkResult();
+    //    }
+    //}
 }
