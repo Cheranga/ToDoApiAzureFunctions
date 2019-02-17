@@ -103,3 +103,5 @@ public static async Task<IActionResult> Run(
 - [ ] Create a todo
 - [ ] Update a todo
 - [ ] Delete a todo
+
+*For reference refer these examples on how to use cosmos db https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-cosmosdb-v2#input---c-examples*
