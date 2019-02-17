@@ -39,11 +39,11 @@ public static async Task<IActionResult> Run(
 
 ### Blob Storage
 
-- [ ] Get all todos
-- [ ] Get todo by id
-- [ ] Create a todo
-- [ ] Update a todo
-- [ ] Delete a todo
+- [x] Get all todos
+- [x] Get todo by id
+- [x] Create a todo
+- [x] Update a todo
+- [x] Delete a todo
 
 * Getting an item from the blob storage can be done in two ways.
 
@@ -98,11 +98,11 @@ public static async Task<IActionResult> Run(
 
 ### Cosmos DB Storage
 
-- [ ] Get all todos
-- [ ] Get todo by id
-- [ ] Create a todo
-- [ ] Update a todo
-- [ ] Delete a todo
+- [x] Get all todos
+- [x] Get todo by id
+- [x] Create a todo
+- [x] Update a todo
+- [x] Delete a todo
 
 *For reference refer these examples on how to use cosmos db https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-cosmosdb-v2#input---c-examples*
 
