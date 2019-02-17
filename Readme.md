@@ -105,3 +105,11 @@ public static async Task<IActionResult> Run(
 - [ ] Delete a todo
 
 *For reference refer these examples on how to use cosmos db https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-cosmosdb-v2#input---c-examples*
+
+* When creating a todo item, had to use a `dynamic` object. This is because otherwise if I use my class (`Todo`) the document
+object will endup having two properties (`Id`, and `id`). To avoid this we need to create a dynamic object with 
+the required properties and then add it as a document.
+
+* When retrieving a document using the `DocumentClient` instance since all the LINQ operations are not supported, had to do some
+`AsEnumerable` gymnastics in there (refer the `UpdateTodoFunction.cs` in cosmos section).
+
